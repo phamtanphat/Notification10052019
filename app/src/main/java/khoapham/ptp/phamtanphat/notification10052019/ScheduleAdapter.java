@@ -67,9 +67,6 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Viewho
                     AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                     alarmManager.cancel(pendingIntent);
                 }
-
-
-
             }
         });
     }
