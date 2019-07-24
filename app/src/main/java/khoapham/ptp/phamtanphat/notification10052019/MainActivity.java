@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         manglichtrinh = new ArrayList<>();
         manglichtrinh.add(new Schedule(calendar.getTimeInMillis(),false));
 
-        scheduleAdapter = new ScheduleAdapter(manglichtrinh);
+        scheduleAdapter = new ScheduleAdapter(manglichtrinh,this);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(scheduleAdapter);
 
