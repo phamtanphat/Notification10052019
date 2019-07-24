@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
                 String timegetText = simpleDateFormat.format(calendar.getTimeInMillis());
                 if (!TextUtils.isEmpty(text) && text.equals(timegetText) ){
-                    manglichtrinh.add(new Schedule(calendar.getTimeInMillis(),true));
+                    manglichtrinh.add(new Schedule(calendar.getTimeInMillis(),false));
                     scheduleAdapter.notifyDataSetChanged();
                 }
             }

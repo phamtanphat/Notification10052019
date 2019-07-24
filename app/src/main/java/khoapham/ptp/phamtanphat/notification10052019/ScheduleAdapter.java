@@ -49,17 +49,25 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Viewho
                 arraylistLichtrinh.set(i , schedule);
                 notifyDataSetChanged();
 
-                Intent intent = new Intent(context,NotificationAlarm.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(context,i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
-                AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                if (schedule.isPicked()){
+                    Intent intent = new Intent(context,NotificationAlarm.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
-                }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-                    alarmManager.setExact(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        alarmManager.setAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
+                    }else if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+                        alarmManager.setExact(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
+                    }else{
+                        alarmManager.set(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
+                    }
                 }else{
-                    alarmManager.set(AlarmManager.RTC_WAKEUP,schedule.getTime(),pendingIntent);
+                    Intent intent = new Intent(context,NotificationAlarm.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(context,i,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                    AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                    alarmManager.cancel(pendingIntent);
                 }
+
 
 
             }
