@@ -60,7 +60,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String text = edtTime.getText().toString();
-                if (!TextUtils.isEmpty(text)){
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
+                String timegetText = simpleDateFormat.format(calendar.getTimeInMillis());
+                if (!TextUtils.isEmpty(text) && text.equals(timegetText) ){
                     manglichtrinh.add(new Schedule(calendar.getTimeInMillis(),true));
                     scheduleAdapter.notifyDataSetChanged();
                 }
