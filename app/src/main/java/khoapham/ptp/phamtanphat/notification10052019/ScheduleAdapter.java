@@ -30,7 +30,7 @@ public class ScheduleAdapter extends RecyclerView.Adapter<ScheduleAdapter.Viewho
     @Override
     public void onBindViewHolder(@NonNull Viewholder viewholder, int i) {
         Schedule schedule = arraylistLichtrinh.get(i);
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         viewholder.txtTime.setText(simpleDateFormat.format(schedule.getTime()));
         viewholder.toggleButton.setChecked(schedule.isPicked());
     }
